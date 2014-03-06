@@ -1,0 +1,20 @@
+{
+    "name": "alexwenzel/bselements",
+    "description": "Bootstrap shortcuts and elements for Laravel",
+    "authors": [
+        {
+            "name": "alexwenzel",
+            "email": "alexander.wenzel.berlin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Alexwenzel\\Bselements": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
