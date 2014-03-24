@@ -7,7 +7,7 @@ This Package helps me with building Bootstrap desinged applications with Laravel
 
 ## Usage
 
-First register the service provider ``Alexwenzel\Bselements\BselementsServiceProvider`` in ``app.conf/app.php``.
+First register the service provider ``Alexwenzel\Bselements\BselementsServiceProvider`` in ``app/conf/app.php``.
 
 Thats all!
 
@@ -22,6 +22,16 @@ Optional you can register an alias in the same file like the service provider.
 ````
 Alexwenzel\Bselements\Form::text($id, $label, $attributes = array(), $errors = null)
 ````
+
+### Text Addon
+
+![text](img/textaddon.png)
+
+````
+Alexwenzel\Bselements\Form::textAddon($id, $label, $attributes = array(), $errors = null, $addonDirection, $addonContent)
+````
+
+``$addonDirection`` can be ``left`` or ``right``
 
 ### Password
 

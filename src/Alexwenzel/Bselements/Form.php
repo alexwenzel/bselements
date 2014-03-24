@@ -48,6 +48,26 @@ class Form {
 		return $output;
 	}
 
+	public static function textAddon($id, $label, $attributes = array(), $errors = null, $addonDirection, $addonContent)
+	{
+		// merge with defaults
+		$inputAttributes = array_merge(array(
+			"class" => "form-control",
+		), $attributes);
+
+		$output  = self::getFormgroupHeader($errors, $id);
+		$output .= \Form::label($id, $label);
+		$output .= '<div class="input-group">';
+		if ($addonDirection == 'left') $output .= '<span class="input-group-addon">'.$addonContent.'</span>';
+		$output .= \Form::input('text', $id, null, $inputAttributes);
+		if ($addonDirection != 'left') $output .= '<span class="input-group-addon">'.$addonContent.'</span>';
+		$output .= '</div>';
+		$output .= self::getHelptext($errors, $id);
+		$output .= '</div>';
+
+		return $output;
+	}
+
 	public static function password($id, $label, $attributes = array(), $errors = null)
 	{
 		// merge with defaults
