@@ -20,7 +20,7 @@ Optional you can register an alias in the same file like the service provider.
 ![text](img/text.png)
 
 ````
-Alexwenzel\Bselements\Form::text($id, $label, $attributes = array(), $errors = null)
+text($id, $label, $attributes = array(), $errors = null)
 ````
 
 ### Text Addon
@@ -28,17 +28,25 @@ Alexwenzel\Bselements\Form::text($id, $label, $attributes = array(), $errors = n
 ![text](img/textaddon.png)
 
 ````
-Alexwenzel\Bselements\Form::textAddon($id, $label, $attributes = array(), $errors = null, $addonDirection, $addonContent)
+textAddon($id, $label, $attributes = array(), $errors = null, $addonDirection, $addonContent)
 ````
 
 ``$addonDirection`` can be ``left`` or ``right``
+
+### Select
+
+![text](img/select.png)
+
+````
+select($id, $label, array $elements, array $attributes = array(), $errors = null)
+````
 
 ### Password
 
 ![password](img/password.png)
 
 ````
-Alexwenzel\Bselements\Form::password($id, $label, $attributes = array(), $errors = null)
+password($id, $label, $attributes = array(), $errors = null)
 ````
 
 ### Textarea
@@ -46,7 +54,7 @@ Alexwenzel\Bselements\Form::password($id, $label, $attributes = array(), $errors
 ![textarea](img/textarea.png)
 
 ````
-Alexwenzel\Bselements\Form::textarea($id, $label, $attributes = array(), $errors = null)
+textarea($id, $label, $attributes = array(), $errors = null)
 ````
 
 ### Radio Group
@@ -54,7 +62,7 @@ Alexwenzel\Bselements\Form::textarea($id, $label, $attributes = array(), $errors
 ![radio](img/radio.png)
 
 ````
-Alexwenzel\Bselements\Form::radioGroup($id, $label, array $values, $errors = null)
+radioGroup($id, $label, array $values, $errors = null)
 ````
 
 ### Checkbox Group
@@ -62,5 +70,5 @@ Alexwenzel\Bselements\Form::radioGroup($id, $label, array $values, $errors = nul
 ![checkbox](img/checkbox.png)
 
 ````
-Alexwenzel\Bselements\Form::checkboxGroup($id, $label, array $values, $errors = null)
+checkboxGroup($id, $label, array $values, $errors = null)
 ````

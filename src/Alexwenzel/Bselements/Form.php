@@ -68,6 +68,22 @@ class Form {
 		return $output;
 	}
 
+	public static function select($id, $label, array $elements, array $attributes = array(), $errors = null)
+	{
+		// merge with defaults
+		$inputAttributes = array_merge(array(
+			"class" => "form-control",
+		), $attributes);
+
+		$output  = self::getFormgroupHeader($errors, $id);
+		$output .= \Form::label($id, $label);
+		$output .= \Form::select($id, $elements, null, $inputAttributes);
+		$output .= self::getHelptext($errors, $id);
+		$output .= '</div>';
+
+		return $output;
+	}
+
 	public static function password($id, $label, $attributes = array(), $errors = null)
 	{
 		// merge with defaults
