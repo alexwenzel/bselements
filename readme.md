@@ -1,74 +1,73 @@
-# Bootstrap Elements for Laravel
+# Some Bootstrap Elements for Laravel
 
 This Package helps me with building Bootstrap desinged applications with Laravel.
 
-  * shows error messages in help text
+  * shows first error message in help text
   * automatically repopulates the form elements
+
+Horizontal forms are not supported.
 
 ## Usage
 
-First register the service provider ``Alexwenzel\Bselements\BselementsServiceProvider`` in ``app/conf/app.php``.
-
-Thats all!
-
+First register the service provider ``Alexwenzel\Bselements\BselementsServiceProvider`` in ``app/conf/app.php``.  
 Optional you can register an alias in the same file like the service provider.
 
 ## Form elements
 
 ### Text
 
-![text](img/text.png)
+````php
+text($id, $label, array $attributes = array(), $errors = null)
+````
 
-````
-text($id, $label, $attributes = array(), $errors = null)
-````
+![text](img/text.png)
 
 ### Text Addon
 
-![text](img/textaddon.png)
-
-````
-textAddon($id, $label, $attributes = array(), $errors = null, $addonDirection, $addonContent)
+````php
+textAddon($id, $label, array $attributes = array(), $errors = null, $addonDirection, $addonContent)
 ````
 
 ``$addonDirection`` can be ``left`` or ``right``
 
+![text](img/textaddon.png)
+
 ### Select
 
-![text](img/select.png)
-
-````
+````php
 select($id, $label, array $elements, array $attributes = array(), $errors = null)
 ````
 
+![text](img/select.png)
+
 ### Password
+
+````php
+password($id, $label, array $attributes = array(), $errors = null)
+````
 
 ![password](img/password.png)
 
-````
-password($id, $label, $attributes = array(), $errors = null)
-````
-
 ### Textarea
+
+````php
+textarea($id, $label, array $attributes = array(), $errors = null)
+````
 
 ![textarea](img/textarea.png)
 
-````
-textarea($id, $label, $attributes = array(), $errors = null)
-````
-
 ### Radio Group
 
-![radio](img/radio.png)
-
-````
+````php
 radioGroup($id, $label, array $values, $errors = null)
 ````
 
+![radio](img/radio.png)
+
 ### Checkbox Group
 
-![checkbox](img/checkbox.png)
+````php
+checkboxGroup($label, array $values, $errors = null)
+````
 
-````
-checkboxGroup($id, $label, array $values, $errors = null)
-````
+![checkbox](img/checkbox.png)

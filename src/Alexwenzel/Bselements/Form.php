@@ -32,7 +32,7 @@ class Form {
 		return '<div class="form-group">';
 	}
 
-	public static function text($id, $label, $attributes = array(), $errors = null)
+	public static function text($id, $label, array $attributes = array(), $errors = null)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
@@ -48,7 +48,7 @@ class Form {
 		return $output;
 	}
 
-	public static function textAddon($id, $label, $attributes = array(), $errors = null, $addonDirection, $addonContent)
+	public static function textAddon($id, $label, array $attributes = array(), $errors = null, $addonDirection, $addonContent)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
@@ -84,7 +84,7 @@ class Form {
 		return $output;
 	}
 
-	public static function password($id, $label, $attributes = array(), $errors = null)
+	public static function password($id, $label, array $attributes = array(), $errors = null)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
@@ -100,7 +100,7 @@ class Form {
 		return $output;
 	}
 
-	public static function textarea($id, $label, $attributes = array(), $errors = null)
+	public static function textarea($id, $label, array $attributes = array(), $errors = null)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
@@ -131,7 +131,7 @@ class Form {
 		return $output;
 	}
 
-	public static function checkboxGroup($id, $label, array $values, $errors = null)
+	public static function checkboxGroup($label, array $values, $errors = null)
 	{
 		$errorCounter = 0;
 		$checkboxes = '';
@@ -139,14 +139,15 @@ class Form {
 		foreach ($values as $key => $value) {
 
 			if ( $errorMsg = self::getFirstErrorMessage($errors, $key) ) {
-				$errorCounter++;
+				$checkboxes .= '<div class="checkbox has-error"><label>'.\Form::checkbox($key, $key).' '.$value.'</label> '.self::getHelptext($errors, $key).'</div>';
+			} else {
+				$checkboxes .= '<div class="checkbox"><label>'.\Form::checkbox($key, $key).' '.$value.'</label></div>';
 			}
 
-			$checkboxes .= '<div class="checkbox"><label>'.\Form::checkbox($key, $key).' '.$value.'</label></div>';
 		}
 
-		$output  = $errorCounter === 0 ? '<div class="form-group">' : '<div class="form-group has-error">';
-		$output .= \Form::label($id, $label);
+		$output  = '<div class="form-group">';
+		$output .= \Form::label('', $label);
 		$output .= $checkboxes;
 		$output .= '</div>';
 
