@@ -32,6 +32,27 @@ class Form {
 		return '<div class="form-group">';
 	}
 
+	public static function info($label, $text, array $attributes = array())
+	{
+		// merge with defaults
+		$inputAttributes = array_merge(array(
+			"class" => "form-control",
+		), $attributes);
+
+		$attributesString = '';
+		
+		foreach ($inputAttributes as $key => $value) {
+			$attributesString .= $key.'="'.$value.'"'; 
+		}
+
+		$output  = '<div class="form-group">';
+		$output .= \Form::label('', $label);
+		$output .= '<div '.$attributesString.'>'.$text.'</div>';
+		$output .= '</div>';
+
+		return $output;
+	}
+
 	public static function text($id, $label, array $attributes = array(), $errors = null)
 	{
 		// merge with defaults

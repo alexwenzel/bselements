@@ -14,6 +14,16 @@ Optional you can register an alias in the same file like the service provider.
 
 ## Form elements
 
+### Info
+
+Generates a text element like looking field, without any functionality.
+
+````php
+info($label, $text, array $attributes = array())
+````
+
+![info](img/info.png)
+
 ### Text
 
 ````php
@@ -30,7 +40,7 @@ textAddon($id, $label, array $attributes = array(), $errors = null, $addonDirect
 
 ``$addonDirection`` can be ``left`` or ``right``
 
-![text](img/textaddon.png)
+![textaddon](img/textaddon.png)
 
 ### Select
 
@@ -38,7 +48,7 @@ textAddon($id, $label, array $attributes = array(), $errors = null, $addonDirect
 select($id, $label, array $elements, array $attributes = array(), $errors = null)
 ````
 
-![text](img/select.png)
+![select](img/select.png)
 
 ### Password
 
