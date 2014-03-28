@@ -1,5 +1,10 @@
 <?php namespace Alexwenzel\Bselements;
 
+/**
+ * Bootstrap Form Elements
+ *
+ * @author 	alexwenzel <alexander.wenzel.berlin@gmail.com>
+ */
 class Form {
 
 	private static function getFirstErrorMessage($errors, $key)
@@ -40,7 +45,7 @@ class Form {
 		), $attributes);
 
 		$attributesString = '';
-		
+
 		foreach ($inputAttributes as $key => $value) {
 			$attributesString .= $key.'="'.$value.'"'; 
 		}
