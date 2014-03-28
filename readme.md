@@ -12,6 +12,8 @@ Horizontal forms are not supported.
 First register the service provider ``Alexwenzel\Bselements\BselementsServiceProvider`` in ``app/conf/app.php``.  
 Optional you can register an alias in the same file like the service provider.
 
+There is a demo page included in this package. View it by using ``View::make('bselements::demopage')``.
+
 ## Form elements
 
 ### Info
