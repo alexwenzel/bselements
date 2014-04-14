@@ -2,6 +2,12 @@
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Bootstrap Elements: Service Provider
+ *
+ * @author 	alexwenzel 	<alexander.wenzel.berlin@gmail.com>
+ * @license GPL 2 		<http://www.gnu.de/documents/gpl-2.0.de.html>
+ */
 class BselementsServiceProvider extends ServiceProvider {
 
 	/**
@@ -28,7 +34,16 @@ class BselementsServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		
+		$this->app['formelements'] = $this->app->share(function($app)
+		{
+			return new FormElements;
+		});
+
+		$this->app->booting(function()
+		{
+			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
+			$loader->alias('BsForm', 'Alexwenzel\Bselements\Facades\FormElements');
+		});
 	}
 
 	/**
@@ -38,7 +53,7 @@ class BselementsServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return array('formelements');
 	}
 
 }

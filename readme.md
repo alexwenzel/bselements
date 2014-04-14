@@ -7,12 +7,17 @@ This Package helps me with building Bootstrap desinged applications with Laravel
 
 Horizontal forms are not supported.
 
+There is a demo page included in this package. View it by using ``View::make('bselements::demopage')``.
+
 ## Usage
 
-First register the service provider ``Alexwenzel\Bselements\BselementsServiceProvider`` in ``app/conf/app.php``.  
-Optional you can register an alias in the same file like the service provider.
+First register the service provider ``Alexwenzel\Bselements\BselementsServiceProvider`` in ``app/conf/app.php``.
 
-There is a demo page included in this package. View it by using ``View::make('bselements::demopage')``.
+Then you can use it with the following syntax:
+
+`````php
+{{ BsForm::text('text', 'Text', array(), $errors) }}
+````
 
 ## Form elements
 
