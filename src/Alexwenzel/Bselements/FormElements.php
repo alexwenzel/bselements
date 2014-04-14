@@ -11,6 +11,20 @@ use \Illuminate\Support\MessageBag;
 class FormElements {
 
 	/**
+	 * Validation Messages
+	 * @var MessageBag
+	 */
+	private $messagebag;
+
+	/**
+	 * Construktor
+	 */
+	public function __construct()
+	{
+		$this->messagebag = new MessageBag();
+	}
+
+	/**
 	 * Reads the first Message from MessageBag if existent
 	 * @param  MessageBag $errors
 	 * @param  string     $key
@@ -55,6 +69,11 @@ class FormElements {
 		return '<div class="form-group">';
 	}
 
+	public function useMessageBag(MessageBag $errors)
+	{
+		$this->messagebag = $errors;
+	}
+
 	public function info($label, $text, array $attributes = array())
 	{
 		// merge with defaults
@@ -76,17 +95,27 @@ class FormElements {
 		return $output;
 	}
 
-	public function text($id, $label, array $attributes = array(), MessageBag $errors = null)
+	/**
+	 * Generates a simple text input
+	 *
+	 * @see http://getbootstrap.com/css/#forms-controls
+	 *
+	 * @param  string $id
+	 * @param  string $label
+	 * @param  array  $attributes
+	 * @return string
+	 */
+	public function text($id, $label, array $attributes = array())
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($errors, $id);
+		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::input('text', $id, null, $inputAttributes);
-		$output .= $this->formatHelptext($errors, $id);
+		$output .= $this->formatHelptext($this->messagebag, $id);
 		$output .= '</div>';
 
 		return $output;
