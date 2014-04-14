@@ -16,7 +16,7 @@
 		{{ BsForm::text('text', 'Text') }}
 		{{ BsForm::textAddon('left', 'Demo', 'textaddon1', 'Text-Addon') }}
 		{{ BsForm::textAddon('right', 'Demo', 'textaddon2', 'Text-Addon') }}
-		{{ BsForm::password('password', 'Password', array(), $errors) }}
+		{{ BsForm::password('password', 'Password') }}
 	</div>
 	<div class="col-lg-3">
 		{{ BsForm::select('select', 'Select', array(''=>'-- Choose --','s1'=>'Select 1','s2'=>'Select 2','s3'=>'Select 3')) }}

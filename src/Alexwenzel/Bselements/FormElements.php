@@ -177,17 +177,24 @@ class FormElements {
 		return $output;
 	}
 
-	public function password($id, $label, array $attributes = array(), MessageBag $errors = null)
+	/**
+	 * Generates a password input
+	 * @param  string $id
+	 * @param  string $label
+	 * @param  array  $attributes
+	 * @return string
+	 */
+	public function password($id, $label, array $attributes = array())
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($errors, $id);
+		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::password($id, $inputAttributes);
-		$output .= $this->formatHelptext($errors, $id);
+		$output .= $this->formatHelptext($this->messagebag, $id);
 		$output .= '</div>';
 
 		return $output;
