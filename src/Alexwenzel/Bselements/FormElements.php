@@ -153,17 +153,25 @@ class FormElements {
 		return $output;
 	}
 
-	public function select($id, $label, array $elements, array $attributes = array(), MessageBag $errors = null)
+	/**
+	 * Generates a select element
+	 * @param  string $id
+	 * @param  string $label
+	 * @param  array  $elements
+	 * @param  array  $attributes
+	 * @return string
+	 */
+	public function select($id, $label, array $elements, array $attributes = array())
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($errors, $id);
+		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::select($id, $elements, null, $inputAttributes);
-		$output .= $this->formatHelptext($errors, $id);
+		$output .= $this->formatHelptext($this->messagebag, $id);
 		$output .= '</div>';
 
 		return $output;

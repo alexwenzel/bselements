@@ -19,7 +19,7 @@
 		{{ BsForm::password('password', 'Password', array(), $errors) }}
 	</div>
 	<div class="col-lg-3">
-		{{ BsForm::select('select', 'Select', array(''=>'-- Choose --','s1'=>'Select 1','s2'=>'Select 2','s3'=>'Select 3'), array(), $errors) }}
+		{{ BsForm::select('select', 'Select', array(''=>'-- Choose --','s1'=>'Select 1','s2'=>'Select 2','s3'=>'Select 3')) }}
 		{{ BsForm::textarea('textarea', 'Textarea', array(), $errors) }}
 	</div>
 	<div class="col-lg-3">
