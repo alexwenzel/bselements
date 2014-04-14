@@ -9,6 +9,21 @@ Horizontal forms are not supported.
 
 There is a demo page included in this package. View it by using ``View::make('bselements::demopage')``.
 
+## Example
+
+````php
+{{ BsForm::useMessageBag($errors) }}
+{{ BsForm::info('Info', 'Infotext', array()) }}
+{{ BsForm::text('text', 'Text') }}
+{{ BsForm::textAddon('left', 'Demo', 'textaddon1', 'Text-Addon') }}
+{{ BsForm::textAddon('right', 'Demo', 'textaddon2', 'Text-Addon') }}
+{{ BsForm::password('password', 'Password') }}
+{{ BsForm::select('select', 'Select', array(''=>'-- Choose --','s1'=>'Select 1','s2'=>'Select 2','s3'=>'Select 3')) }}
+{{ BsForm::textarea('textarea', 'Textarea') }}
+{{ BsForm::radioGroup('radiogroup', 'radioGroup', array('r1'=>'1','r2'=>'2','r3'=>'3')) }}
+{{ BsForm::checkboxGroup('checkboxGroup', array('c1'=>'one','c2'=>'two','c3'=>'three')) }}
+````
+
 ## Usage
 
 First register the service provider ``Alexwenzel\Bselements\BselementsServiceProvider`` in ``app/conf/app.php``.
@@ -16,75 +31,98 @@ First register the service provider ``Alexwenzel\Bselements\BselementsServicePro
 Then you can use it with the following syntax:
 
 `````php
-{{ BsForm::text('text', 'Text', array(), $errors) }}
+{{ BsForm::text('text', 'Text') }}
 ````
 
 ## Form elements
 
-### Info
+### Injecting validation messages
 
-Generates a text element like looking field, without any functionality.
+You can inject your validation messages within you template into the BsForm class.
 
 ````php
-info($label, $text, array $attributes = array())
+BsForm::useMessageBag($errors)
+````
+
+### Info
+
+Generates a text input look-alike field, without any functionality.
+
+````php
+BsForm::info($label, $text, array $attributes = array())
 ````
 
 ![info](img/info.png)
 
 ### Text
 
+Generates a text input element.
+
 ````php
-text($id, $label, array $attributes = array(), $errors = null)
+BsForm::text($id, $label, array $attributes = array())
 ````
 
 ![text](img/text.png)
 
 ### Text Addon
 
+Generates a text input element with addon.
+
 ````php
-textAddon($id, $label, array $attributes = array(), $errors = null, $addonDirection, $addonContent)
+BsForm::textAddon($addonDirection, $addonContent, $id, $label, array $attributes = array())
 ````
 
-``$addonDirection`` can be ``left`` or ``right``
+  * ``$addonDirection`` can be ``left`` or ``right``
+  * ``$addonContent`` can be any HTML/String
 
 ![textaddon](img/textaddon.png)
 
 ### Select
 
+Generates a select element.
+
 ````php
-select($id, $label, array $elements, array $attributes = array(), $errors = null)
+BsForm::select($id, $label, array $elements, array $attributes = array())
 ````
 
 ![select](img/select.png)
 
 ### Password
 
+Generates a password input element.
+
 ````php
-password($id, $label, array $attributes = array(), $errors = null)
+BsForm::password($id, $label, array $attributes = array())
 ````
 
 ![password](img/password.png)
 
 ### Textarea
 
+Generates a textarea element.
+
 ````php
-textarea($id, $label, array $attributes = array(), $errors = null)
+BsForm::textarea($id, $label, array $attributes = array())
 ````
 
 ![textarea](img/textarea.png)
 
 ### Radio Group
 
+Generates a group of radio elements.
+
 ````php
-radioGroup($id, $label, array $values, $errors = null)
+BsForm::radioGroup($id, $label, array $values)
 ````
 
 ![radio](img/radio.png)
 
 ### Checkbox Group
 
+Generates a group of checkbox elements.
+
 ````php
-checkboxGroup($label, array $values, $errors = null)
+BsForm::checkboxGroup($label, array $values)
 ````
 
 ![checkbox](img/checkbox.png)

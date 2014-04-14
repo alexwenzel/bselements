@@ -69,11 +69,23 @@ class FormElements {
 		return '<div class="form-group">';
 	}
 
+	/**
+	 * Injects a Messagebag with error/validation messages
+	 * @param  MessageBag $errors
+	 * @return void
+	 */
 	public function useMessageBag(MessageBag $errors)
 	{
 		$this->messagebag = $errors;
 	}
 
+	/**
+	 * Generates a text input look-alike field, without any functionality
+	 * @param  string $label
+	 * @param  string $text
+	 * @param  array  $attributes
+	 * @return string
+	 */
 	public function info($label, $text, array $attributes = array())
 	{
 		// merge with defaults
@@ -96,7 +108,7 @@ class FormElements {
 	}
 
 	/**
-	 * Generates a simple text input
+	 * Generates a text input element
 	 *
 	 * @see http://getbootstrap.com/css/#forms-controls
 	 *
@@ -122,7 +134,7 @@ class FormElements {
 	}
 
 	/**
-	 * Generates a text input with addon
+	 * Generates a text input element with addon
 	 *
 	 * @see http://getbootstrap.com/components/#input-groups
 	 *
@@ -181,7 +193,7 @@ class FormElements {
 	}
 
 	/**
-	 * Generates a password input
+	 * Generates a password input element
 	 *
 	 * @see http://getbootstrap.com/css/#forms-controls
 	 *
