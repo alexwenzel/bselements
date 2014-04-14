@@ -14,8 +14,8 @@
 		{{ BsForm::useMessageBag($errors) }}
 		{{ BsForm::info('Info', 'Infotext', array()) }}
 		{{ BsForm::text('text', 'Text') }}
-		{{ BsForm::textAddon('textaddon1', 'Text-Addon', array(), $errors, 'left', 'Demo') }}
-		{{ BsForm::textAddon('textaddon2', 'Text-Addon', array(), $errors, 'right', 'Demo') }}
+		{{ BsForm::textAddon('left', 'Demo', 'textaddon1', 'Text-Addon') }}
+		{{ BsForm::textAddon('right', 'Demo', 'textaddon2', 'Text-Addon') }}
 		{{ BsForm::password('password', 'Password', array(), $errors) }}
 	</div>
 	<div class="col-lg-3">

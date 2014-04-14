@@ -121,21 +121,33 @@ class FormElements {
 		return $output;
 	}
 
-	public function textAddon($id, $label, array $attributes = array(), MessageBag $errors = null, $addonDirection, $addonContent)
+	/**
+	 * Generates a text input with addon
+	 *
+	 * @see http://getbootstrap.com/components/#input-groups
+	 *
+	 * @param  string $addonDirection left|right
+	 * @param  string $addonContent
+	 * @param  string $id
+	 * @param  string $label
+	 * @param  array  $attributes
+	 * @return string
+	 */
+	public function textAddon($addonDirection, $addonContent, $id, $label, array $attributes = array())
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($errors, $id);
+		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= '<div class="input-group">';
 		if ($addonDirection == 'left') $output .= '<span class="input-group-addon">'.$addonContent.'</span>';
 		$output .= \Form::input('text', $id, null, $inputAttributes);
 		if ($addonDirection != 'left') $output .= '<span class="input-group-addon">'.$addonContent.'</span>';
 		$output .= '</div>';
-		$output .= $this->formatHelptext($errors, $id);
+		$output .= $this->formatHelptext($this->messagebag, $id);
 		$output .= '</div>';
 
 		return $output;
