@@ -155,6 +155,9 @@ class FormElements {
 
 	/**
 	 * Generates a select element
+	 *
+	 * @see http://getbootstrap.com/css/#forms-controls
+	 *
 	 * @param  string $id
 	 * @param  string $label
 	 * @param  array  $elements
@@ -179,6 +182,9 @@ class FormElements {
 
 	/**
 	 * Generates a password input
+	 *
+	 * @see http://getbootstrap.com/css/#forms-controls
+	 *
 	 * @param  string $id
 	 * @param  string $label
 	 * @param  array  $attributes
@@ -200,46 +206,75 @@ class FormElements {
 		return $output;
 	}
 
-	public function textarea($id, $label, array $attributes = array(), MessageBag $errors = null)
+	/**
+	 * Generates a textarea element
+	 *
+	 * @see http://getbootstrap.com/css/#forms-controls
+	 *
+	 * @param  string $id
+	 * @param  string $label
+	 * @param  array  $attributes
+	 * @return string
+	 */
+	public function textarea($id, $label, array $attributes = array())
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($errors, $id);
+		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::textarea($id, null, $inputAttributes);
-		$output .= $this->formatHelptext($errors, $id);
+		$output .= $this->formatHelptext($this->messagebag, $id);
 		$output .= '</div>';
 
 		return $output;
 	}
 
-	public function radioGroup($id, $label, array $values, MessageBag $errors = null)
+	/**
+	 * Generates a group of radio elements
+	 *
+	 * @see http://getbootstrap.com/css/#forms-controls
+	 *
+	 * @param  string $id
+	 * @param  string $label
+	 * @param  array  $values
+	 * @return string
+	 */
+	public function radioGroup($id, $label, array $values)
 	{
-		$output  = $this->formatFormgroupOpen($errors, $id);
+		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
 		$output .= \Form::label($id, $label);
 
 		foreach ($values as $key => $value) {
 			$output .= '<div class="radio"><label>'.\Form::radio($id, $key).' '.$value.'</label></div>';
 		}
 
-		$output .= $this->formatHelptext($errors, $id);
+		$output .= $this->formatHelptext($this->messagebag, $id);
 		$output .= '</div>';
 
 		return $output;
 	}
 
-	public function checkboxGroup($label, array $values, MessageBag $errors = null)
+	/**
+	 * Generates a group of checkbox elements
+	 *
+	 * @see http://getbootstrap.com/css/#forms-controls
+	 *
+	 * @param  string $label
+	 * @param  array  $values
+	 * @return string
+	 */
+	public function checkboxGroup($label, array $values)
 	{
 		$errorCounter = 0;
 		$checkboxes = '';
 
 		foreach ($values as $key => $value) {
 
-			if ( $errorMsg = $this->getFirstErrorMessage($errors, $key) ) {
-				$checkboxes .= '<div class="checkbox has-error"><label>'.\Form::checkbox($key, $key).' '.$value.'</label> '.$this->formatHelptext($errors, $key).'</div>';
+			if ( $errorMsg = $this->getFirstErrorMessage($this->messagebag, $key) ) {
+				$checkboxes .= '<div class="checkbox has-error"><label>'.\Form::checkbox($key, $key).' '.$value.'</label> '.$this->formatHelptext($this->messagebag, $key).'</div>';
 			} else {
 				$checkboxes .= '<div class="checkbox"><label>'.\Form::checkbox($key, $key).' '.$value.'</label></div>';
 			}

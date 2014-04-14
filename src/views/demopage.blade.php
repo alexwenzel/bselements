@@ -20,11 +20,11 @@
 	</div>
 	<div class="col-lg-3">
 		{{ BsForm::select('select', 'Select', array(''=>'-- Choose --','s1'=>'Select 1','s2'=>'Select 2','s3'=>'Select 3')) }}
-		{{ BsForm::textarea('textarea', 'Textarea', array(), $errors) }}
+		{{ BsForm::textarea('textarea', 'Textarea') }}
 	</div>
 	<div class="col-lg-3">
-		{{ BsForm::radioGroup('radiogroup', 'radioGroup', array('r1'=>'1','r2'=>'2','r3'=>'3'), $errors) }}
-		{{ BsForm::checkboxGroup('checkboxGroup', array('c1'=>'one','c2'=>'two','c3'=>'three'), $errors) }}
+		{{ BsForm::radioGroup('radiogroup', 'radioGroup', array('r1'=>'1','r2'=>'2','r3'=>'3')) }}
+		{{ BsForm::checkboxGroup('checkboxGroup', array('c1'=>'one','c2'=>'two','c3'=>'three')) }}
 	</div>
 
 </div><div class="row">
