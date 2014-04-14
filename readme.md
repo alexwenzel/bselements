@@ -1,13 +1,11 @@
 # Some Bootstrap Elements for Laravel
 
-This Package helps me with building Bootstrap desinged applications with Laravel.
+This package provides some form elements for Laravel 4 + Bootstrap 3.
 
   * shows first error message in help text
   * automatically repopulates the form elements
 
-Horizontal forms are not supported.
-
-There is a demo page included in this package. View it by using ``View::make('bselements::demopage')``.
+There is a demo page included in this package: use ``View::make('bselements::demopage')``.
 
 ## Example
 
