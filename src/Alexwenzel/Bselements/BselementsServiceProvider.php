@@ -34,11 +34,11 @@ class BselementsServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['formelements'] = $this->app->share(function($app)
+		$this->app->bind('formelements', function($app)
 		{
 			return new FormElements;
 		});
-
+		
 		$this->app->booting(function()
 		{
 			$loader = \Illuminate\Foundation\AliasLoader::getInstance();
