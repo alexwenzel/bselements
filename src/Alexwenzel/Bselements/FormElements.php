@@ -1,5 +1,7 @@
 <?php namespace Alexwenzel\Bselements;
 
+use \Illuminate\Support\MessageBag;
+
 /**
  * Bootstrap Elements: Form Elements
  *
@@ -8,19 +10,29 @@
  */
 class FormElements {
 
-	private function getFirstErrorMessage($errors, $key)
+	/**
+	 * Reads the first Message from MessageBag if existent
+	 * @param  MessageBag $errors
+	 * @param  string     $key
+	 * @return bool|string
+	 */
+	private function getFirstErrorMessage(MessageBag $errors, $key)
 	{
-		// TODO: fix this
-		if ( $errors !== null && $errors->has($key)) {
+		if ( $errors->has($key) ) {
 			return $errors->first($key);
 		}
 
 		return false;
 	}
 
-	private function getHelptext($errors, $key)
+	/**
+	 * Returns formated helptext
+	 * @param  MessageBag $errors
+	 * @param  string     $key
+	 * @return string
+	 */
+	private function formatHelptext(MessageBag $errors, $key)
 	{
-		// TODO: fix this
 		if ( $error = $this->getFirstErrorMessage($errors, $key) ) {
 			return '<p class="help-block">'.$error.'</p>';
 		}
@@ -28,9 +40,14 @@ class FormElements {
 		return '';
 	}
 
-	private function getFormgroupHeader($errors, $key)
+	/**
+	 * Returns open tag for "formgroup" with error highlight
+	 * @param  MessageBag $errors
+	 * @param  string     $key
+	 * @return string
+	 */
+	private function formatFormgroupOpen(MessageBag $errors, $key)
 	{
-		// TODO: fix this
 		if ( $error = $this->getFirstErrorMessage($errors, $key) ) {
 			return '<div class="form-group has-error">';
 		}
@@ -48,7 +65,7 @@ class FormElements {
 		$attributesString = '';
 
 		foreach ($inputAttributes as $key => $value) {
-			$attributesString .= $key.'="'.$value.'"'; 
+			$attributesString .= $key.'="'.$value.'"';
 		}
 
 		$output  = '<div class="form-group">';
@@ -59,106 +76,106 @@ class FormElements {
 		return $output;
 	}
 
-	public function text($id, $label, array $attributes = array(), $errors = null)
+	public function text($id, $label, array $attributes = array(), MessageBag $errors = null)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->getFormgroupHeader($errors, $id);
+		$output  = $this->formatFormgroupOpen($errors, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::input('text', $id, null, $inputAttributes);
-		$output .= $this->getHelptext($errors, $id);
+		$output .= $this->formatHelptext($errors, $id);
 		$output .= '</div>';
 
 		return $output;
 	}
 
-	public function textAddon($id, $label, array $attributes = array(), $errors = null, $addonDirection, $addonContent)
+	public function textAddon($id, $label, array $attributes = array(), MessageBag $errors = null, $addonDirection, $addonContent)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->getFormgroupHeader($errors, $id);
+		$output  = $this->formatFormgroupOpen($errors, $id);
 		$output .= \Form::label($id, $label);
 		$output .= '<div class="input-group">';
 		if ($addonDirection == 'left') $output .= '<span class="input-group-addon">'.$addonContent.'</span>';
 		$output .= \Form::input('text', $id, null, $inputAttributes);
 		if ($addonDirection != 'left') $output .= '<span class="input-group-addon">'.$addonContent.'</span>';
 		$output .= '</div>';
-		$output .= $this->getHelptext($errors, $id);
+		$output .= $this->formatHelptext($errors, $id);
 		$output .= '</div>';
 
 		return $output;
 	}
 
-	public function select($id, $label, array $elements, array $attributes = array(), $errors = null)
+	public function select($id, $label, array $elements, array $attributes = array(), MessageBag $errors = null)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->getFormgroupHeader($errors, $id);
+		$output  = $this->formatFormgroupOpen($errors, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::select($id, $elements, null, $inputAttributes);
-		$output .= $this->getHelptext($errors, $id);
+		$output .= $this->formatHelptext($errors, $id);
 		$output .= '</div>';
 
 		return $output;
 	}
 
-	public function password($id, $label, array $attributes = array(), $errors = null)
+	public function password($id, $label, array $attributes = array(), MessageBag $errors = null)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->getFormgroupHeader($errors, $id);
+		$output  = $this->formatFormgroupOpen($errors, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::password($id, $inputAttributes);
-		$output .= $this->getHelptext($errors, $id);
+		$output .= $this->formatHelptext($errors, $id);
 		$output .= '</div>';
 
 		return $output;
 	}
 
-	public function textarea($id, $label, array $attributes = array(), $errors = null)
+	public function textarea($id, $label, array $attributes = array(), MessageBag $errors = null)
 	{
 		// merge with defaults
 		$inputAttributes = array_merge(array(
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->getFormgroupHeader($errors, $id);
+		$output  = $this->formatFormgroupOpen($errors, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::textarea($id, null, $inputAttributes);
-		$output .= $this->getHelptext($errors, $id);
+		$output .= $this->formatHelptext($errors, $id);
 		$output .= '</div>';
 
 		return $output;
 	}
 
-	public function radioGroup($id, $label, array $values, $errors = null)
+	public function radioGroup($id, $label, array $values, MessageBag $errors = null)
 	{
-		$output  = $this->getFormgroupHeader($errors, $id);
+		$output  = $this->formatFormgroupOpen($errors, $id);
 		$output .= \Form::label($id, $label);
 
 		foreach ($values as $key => $value) {
 			$output .= '<div class="radio"><label>'.\Form::radio($id, $key).' '.$value.'</label></div>';
 		}
 
-		$output .= $this->getHelptext($errors, $id);
+		$output .= $this->formatHelptext($errors, $id);
 		$output .= '</div>';
 
 		return $output;
 	}
 
-	public function checkboxGroup($label, array $values, $errors = null)
+	public function checkboxGroup($label, array $values, MessageBag $errors = null)
 	{
 		$errorCounter = 0;
 		$checkboxes = '';
@@ -166,7 +183,7 @@ class FormElements {
 		foreach ($values as $key => $value) {
 
 			if ( $errorMsg = $this->getFirstErrorMessage($errors, $key) ) {
-				$checkboxes .= '<div class="checkbox has-error"><label>'.\Form::checkbox($key, $key).' '.$value.'</label> '.$this->getHelptext($errors, $key).'</div>';
+				$checkboxes .= '<div class="checkbox has-error"><label>'.\Form::checkbox($key, $key).' '.$value.'</label> '.$this->formatHelptext($errors, $key).'</div>';
 			} else {
 				$checkboxes .= '<div class="checkbox"><label>'.\Form::checkbox($key, $key).' '.$value.'</label></div>';
 			}
