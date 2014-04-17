@@ -32,6 +32,8 @@ Then you can use it with the following syntax:
 {{ BsForm::text('text', 'Text') }}
 ````
 
+Bootstrap assets (CSS/JS) are not included! Include them yourself.
+
 ## Form elements
 
 ### Injecting validation messages
