@@ -11,7 +11,7 @@
 <div class="container"><div class="row">
 
 	<div class="col-lg-3">
-		{{ BsForm::useMessageBag($errors) }}
+		{{ BsForm::useViewErrorBag($errors) }}
 		{{ BsForm::info('Info', 'Infotext', array()) }}
 		{{ BsForm::text('text', 'Text') }}
 		{{ BsForm::textAddon('left', 'Demo', 'textaddon1', 'Text-Addon') }}

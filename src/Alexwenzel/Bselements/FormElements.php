@@ -1,6 +1,6 @@
 <?php namespace Alexwenzel\Bselements;
 
-use \Illuminate\Support\MessageBag;
+use \Illuminate\Support\ViewErrorBag;
 
 /**
  * Bootstrap Elements: Form Elements
@@ -12,25 +12,25 @@ class FormElements {
 
 	/**
 	 * Validation Messages
-	 * @var MessageBag
+	 * @var ViewErrorBag
 	 */
-	private $messagebag;
+	private $ViewErrorBag;
 
 	/**
 	 * Construktor
 	 */
 	public function __construct()
 	{
-		$this->messagebag = new MessageBag();
+		$this->ViewErrorBag = new ViewErrorBag();
 	}
 
 	/**
-	 * Reads the first Message from MessageBag if existent
-	 * @param  MessageBag $errors
+	 * Reads the first Message from ViewErrorBag if existent
+	 * @param  ViewErrorBag $errors
 	 * @param  string     $key
 	 * @return bool|string
 	 */
-	private function getFirstErrorMessage(MessageBag $errors, $key)
+	private function getFirstErrorMessage(ViewErrorBag $errors, $key)
 	{
 		if ( $errors->has($key) ) {
 			return $errors->first($key);
@@ -41,11 +41,11 @@ class FormElements {
 
 	/**
 	 * Returns formated helptext
-	 * @param  MessageBag $errors
+	 * @param  ViewErrorBag $errors
 	 * @param  string     $key
 	 * @return string
 	 */
-	private function formatHelptext(MessageBag $errors, $key)
+	private function formatHelptext(ViewErrorBag $errors, $key)
 	{
 		if ( $error = $this->getFirstErrorMessage($errors, $key) ) {
 			return '<p class="help-block">'.$error.'</p>';
@@ -56,11 +56,11 @@ class FormElements {
 
 	/**
 	 * Returns open tag for "formgroup" with error highlight
-	 * @param  MessageBag $errors
+	 * @param  ViewErrorBag $errors
 	 * @param  string     $key
 	 * @return string
 	 */
-	private function formatFormgroupOpen(MessageBag $errors, $key)
+	private function formatFormgroupOpen(ViewErrorBag $errors, $key)
 	{
 		if ( $error = $this->getFirstErrorMessage($errors, $key) ) {
 			return '<div class="form-group has-error">';
@@ -70,13 +70,13 @@ class FormElements {
 	}
 
 	/**
-	 * Injects a Messagebag with error/validation messages
-	 * @param  MessageBag $errors
+	 * Injects a ViewErrorBag with error/validation messages
+	 * @param  ViewErrorBag $errors
 	 * @return void
 	 */
-	public function useMessageBag(MessageBag $errors)
+	public function useViewErrorBag(ViewErrorBag $errors)
 	{
-		$this->messagebag = $errors;
+		$this->ViewErrorBag = $errors;
 	}
 
 	/**
@@ -124,10 +124,10 @@ class FormElements {
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
+		$output  = $this->formatFormgroupOpen($this->ViewErrorBag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::input('text', $id, null, $inputAttributes);
-		$output .= $this->formatHelptext($this->messagebag, $id);
+		$output .= $this->formatHelptext($this->ViewErrorBag, $id);
 		$output .= '</div>';
 
 		return $output;
@@ -152,14 +152,14 @@ class FormElements {
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
+		$output  = $this->formatFormgroupOpen($this->ViewErrorBag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= '<div class="input-group">';
 		if ($addonDirection == 'left') $output .= '<span class="input-group-addon">'.$addonContent.'</span>';
 		$output .= \Form::input('text', $id, null, $inputAttributes);
 		if ($addonDirection != 'left') $output .= '<span class="input-group-addon">'.$addonContent.'</span>';
 		$output .= '</div>';
-		$output .= $this->formatHelptext($this->messagebag, $id);
+		$output .= $this->formatHelptext($this->ViewErrorBag, $id);
 		$output .= '</div>';
 
 		return $output;
@@ -183,10 +183,10 @@ class FormElements {
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
+		$output  = $this->formatFormgroupOpen($this->ViewErrorBag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::select($id, $elements, null, $inputAttributes);
-		$output .= $this->formatHelptext($this->messagebag, $id);
+		$output .= $this->formatHelptext($this->ViewErrorBag, $id);
 		$output .= '</div>';
 
 		return $output;
@@ -209,10 +209,10 @@ class FormElements {
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
+		$output  = $this->formatFormgroupOpen($this->ViewErrorBag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::password($id, $inputAttributes);
-		$output .= $this->formatHelptext($this->messagebag, $id);
+		$output .= $this->formatHelptext($this->ViewErrorBag, $id);
 		$output .= '</div>';
 
 		return $output;
@@ -235,10 +235,10 @@ class FormElements {
 			"class" => "form-control",
 		), $attributes);
 
-		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
+		$output  = $this->formatFormgroupOpen($this->ViewErrorBag, $id);
 		$output .= \Form::label($id, $label);
 		$output .= \Form::textarea($id, null, $inputAttributes);
-		$output .= $this->formatHelptext($this->messagebag, $id);
+		$output .= $this->formatHelptext($this->ViewErrorBag, $id);
 		$output .= '</div>';
 
 		return $output;
@@ -256,14 +256,14 @@ class FormElements {
 	 */
 	public function radioGroup($id, $label, array $values)
 	{
-		$output  = $this->formatFormgroupOpen($this->messagebag, $id);
+		$output  = $this->formatFormgroupOpen($this->ViewErrorBag, $id);
 		$output .= \Form::label($id, $label);
 
 		foreach ($values as $key => $value) {
 			$output .= '<div class="radio"><label>'.\Form::radio($id, $key).' '.$value.'</label></div>';
 		}
 
-		$output .= $this->formatHelptext($this->messagebag, $id);
+		$output .= $this->formatHelptext($this->ViewErrorBag, $id);
 		$output .= '</div>';
 
 		return $output;
@@ -285,8 +285,8 @@ class FormElements {
 
 		foreach ($values as $key => $value) {
 
-			if ( $errorMsg = $this->getFirstErrorMessage($this->messagebag, $key) ) {
-				$checkboxes .= '<div class="checkbox has-error"><label>'.\Form::checkbox($key, $key).' '.$value.'</label> '.$this->formatHelptext($this->messagebag, $key).'</div>';
+			if ( $errorMsg = $this->getFirstErrorMessage($this->ViewErrorBag, $key) ) {
+				$checkboxes .= '<div class="checkbox has-error"><label>'.\Form::checkbox($key, $key).' '.$value.'</label> '.$this->formatHelptext($this->ViewErrorBag, $key).'</div>';
 			} else {
 				$checkboxes .= '<div class="checkbox"><label>'.\Form::checkbox($key, $key).' '.$value.'</label></div>';
 			}
