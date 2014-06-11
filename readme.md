@@ -1,8 +1,9 @@
-# Some Bootstrap Elements for Laravel
+#  Laravel form elements for quick prototyping
 
-This package provides some form elements for Laravel 4 + Bootstrap 3.
+This package provides form elements for **Laravel 4.2**, which are styled with [Bootstrap 3](http://getbootstrap.com/css/#forms).
 
-  * shows first error message in help text
+  * shows first error message in help text area
+  * labels the input with the error class
   * automatically repopulates the form elements
 
 There is a demo page included in this package: use ``View::make('bselements::demopage')``.
@@ -10,7 +11,7 @@ There is a demo page included in this package: use ``View::make('bselements::dem
 ## Example
 
 ````php
-{{ BsForm::useMessageBag($errors) }}
+{{ BsForm::useViewErrorBag($errors) }}
 {{ BsForm::info('Info', 'Infotext', array()) }}
 {{ BsForm::text('text', 'Text') }}
 {{ BsForm::textAddon('left', 'Demo', 'textaddon1', 'Text-Addon') }}
@@ -41,7 +42,7 @@ Bootstrap assets (CSS/JS) are not included! Include them yourself.
 You can inject your validation messages within you template into the BsForm class.
 
 ````php
-BsForm::useMessageBag($errors)
+BsForm::useViewErrorBag($errors)
 ````
 
 ### Info
