@@ -166,6 +166,32 @@ class FormElements {
 	}
 
 	/**
+	 * Generates a file input element
+	 *
+	 * @see http://getbootstrap.com/css/#forms-controls
+	 *
+	 * @param  string $id
+	 * @param  string $label
+	 * @param  array  $attributes
+	 * @return string
+	 */
+	public function file($id, $label, array $attributes = array())
+	{
+		// merge with defaults
+		$inputAttributes = array_merge(array(
+			"class" => "form-control",
+		), $attributes);
+
+		$output  = $this->formatFormgroupOpen($this->ViewErrorBag, $id);
+		$output .= \Form::label($id, $label);
+		$output .= \Form::file($id, $inputAttributes);
+		$output .= $this->formatHelptext($this->ViewErrorBag, $id);
+		$output .= '</div>';
+
+		return $output;
+	}
+
+	/**
 	 * Generates a select element
 	 *
 	 * @see http://getbootstrap.com/css/#forms-controls
