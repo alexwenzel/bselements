@@ -17,11 +17,16 @@ There is a demo page included in this package: use ``View::make('bselements::dem
 {{ BsForm::textAddon('left', 'Demo', 'textaddon1', 'Text-Addon') }}
 {{ BsForm::textAddon('right', 'Demo', 'textaddon2', 'Text-Addon') }}
 {{ BsForm::password('password', 'Password') }}
+{{ BsForm::file('file', 'File') }}
 {{ BsForm::select('select', 'Select', array(''=>'-- Choose --','s1'=>'Select 1','s2'=>'Select 2','s3'=>'Select 3')) }}
 {{ BsForm::textarea('textarea', 'Textarea') }}
 {{ BsForm::radioGroup('radiogroup', 'radioGroup', array('r1'=>'1','r2'=>'2','r3'=>'3')) }}
 {{ BsForm::checkboxGroup('checkboxGroup', array('c1'=>'one','c2'=>'two','c3'=>'three')) }}
 ````
+
+![checkbox](img/screen1.png)
+
+![checkbox](img/screen2.png)
 
 ## Usage
 
@@ -53,8 +58,6 @@ Generates a text input look-alike field, without any functionality.
 BsForm::info($label, $text, array $attributes = array())
 ````
 
-![info](img/info.png)
-
 ### Text
 
 Generates a text input element.
@@ -62,8 +65,6 @@ Generates a text input element.
 ````php
 BsForm::text($id, $label, array $attributes = array())
 ````
-
-![text](img/text.png)
 
 ### Text Addon
 
@@ -76,7 +77,13 @@ BsForm::textAddon($addonDirection, $addonContent, $id, $label, array $attributes
   * ``$addonDirection`` can be ``left`` or ``right``
   * ``$addonContent`` can be any HTML/String
 
-![textaddon](img/textaddon.png)
+### File
+
+Generates a file input element.
+
+````php
+BsForm::file($id, $label, array $attributes = array())
+````
 
 ### Select
 
@@ -86,8 +93,6 @@ Generates a select element.
 BsForm::select($id, $label, array $elements, array $attributes = array())
 ````
 
-![select](img/select.png)
-
 ### Password
 
 Generates a password input element.
@@ -95,8 +100,6 @@ Generates a password input element.
 ````php
 BsForm::password($id, $label, array $attributes = array())
 ````
-
-![password](img/password.png)
 
 ### Textarea
 
@@ -106,8 +109,6 @@ Generates a textarea element.
 BsForm::textarea($id, $label, array $attributes = array())
 ````
 
-![textarea](img/textarea.png)
-
 ### Radio Group
 
 Generates a group of radio elements.
@@ -116,8 +117,6 @@ Generates a group of radio elements.
 BsForm::radioGroup($id, $label, array $values)
 ````
 
-![radio](img/radio.png)
-
 ### Checkbox Group
 
 Generates a group of checkbox elements.
@@ -125,5 +124,3 @@ Generates a group of checkbox elements.
 ````php
 BsForm::checkboxGroup($label, array $values)
 ````
-
-![checkbox](img/checkbox.png)
